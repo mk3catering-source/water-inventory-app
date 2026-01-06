@@ -1,0 +1,250 @@
+ScreenManager:
+    LoginScreen:
+    RegisterScreen:
+
+<LoginScreen>:
+    name: "login"
+    BoxLayout:
+        orientation: "vertical"
+        padding: 30
+        spacing: 20
+
+        Label:
+            text: "Water Inventory Login"
+            font_size: 24
+
+        TextInput:
+            id: email
+            hint_text: "Email"
+            multiline: False
+
+        TextInput:
+            id: password
+            hint_text: "Password"
+            password: True
+            multiline: False
+
+        Button:
+            text: "Login"
+            on_press: root.login()
+
+        Button:
+            text: "Go to Register"
+            on_press: app.root.current = "register"
+
+<RegisterScreen>:
+    name: "register"
+    BoxLayout:
+        orientation: "vertical"
+        padding: 30
+        spacing: 20
+
+        Label:
+            text: "Register New User"
+            font_size: 24
+
+        TextInput:
+            id: email
+            hint_text: "Email"
+            multiline: False
+
+        TextInput:
+            id: password
+            hint_text: "Password"
+            password: True
+            multiline: False
+
+        Button:
+            text: "Register"
+            on_press: root.register()
+
+        Button:
+            text: "Back to Login"
+            on_press: app.root.current = "login"
+
+<InventoryScreen>:
+    name: "inventory"
+
+    BoxLayout:
+        orientation: "vertical"
+        padding: 15
+        spacing: 10
+
+        Label:
+            text: "Water Inventory Dashboard"
+            font_size: 22
+            size_hint_y: None
+            height: 40
+
+        ScrollView:
+            do_scroll_x: False
+
+            BoxLayout:
+                orientation: "vertical"
+                size_hint_y: None
+                height: self.minimum_height
+                spacing: 15
+
+                # ========= 250 ML =========
+                GridLayout:
+                    cols: 5
+                    size_hint_y: None
+                    height: 50
+                    spacing: 10
+
+                    Label:
+                        text: "250 ml"
+                        size_hint_x: 0.15
+
+                    Label:
+                        id: stock_250
+                        text: ""
+                        size_hint_x: 0.25
+                        text_size: self.size
+                        halign: "left"
+                        valign: "middle"
+
+                    TextInput:
+                        id: qty_250
+                        hint_text: "Qty"
+                        input_filter: "int"
+                        multiline: False
+                        size_hint_x: 0.15
+
+                    Button:
+                        text: "Add"
+                        on_press: root.modify_stock("250ml", qty_250.text, stock_250, True)
+
+                    Button:
+                        text: "Remove"
+                        on_press: root.modify_stock("250ml", qty_250.text, stock_250, False)
+
+                # ========= 500 ML =========
+                GridLayout:
+                    cols: 5
+                    size_hint_y: None
+                    height: 50
+                    spacing: 10
+
+                    Label:
+                        text: "500 ml"
+
+                    Label:
+                        id: stock_500
+                        text: ""
+                        text_size: self.size
+                        halign: "left"
+                        valign: "middle"
+
+                    TextInput:
+                        id: qty_500
+                        hint_text: "Qty"
+                        input_filter: "int"
+                        multiline: False
+
+                    Button:
+                        text: "Add"
+                        on_press: root.modify_stock("500ml", qty_500.text, stock_500, True)
+
+                    Button:
+                        text: "Remove"
+                        on_press: root.modify_stock("500ml", qty_500.text, stock_500, False)
+
+                # ========= 1 L =========
+                GridLayout:
+                    cols: 5
+                    size_hint_y: None
+                    height: 50
+                    spacing: 10
+
+                    Label:
+                        text: "1 L"
+
+                    Label:
+                        id: stock_1lt
+                        text: ""
+                        text_size: self.size
+                        halign: "left"
+                        valign: "middle"
+
+                    TextInput:
+                        id: qty_1lt
+                        hint_text: "Qty"
+                        input_filter: "int"
+                        multiline: False
+
+                    Button:
+                        text: "Add"
+                        on_press: root.modify_stock("1lt", qty_1lt.text, stock_1lt, True)
+
+                    Button:
+                        text: "Remove"
+                        on_press: root.modify_stock("1lt", qty_1lt.text, stock_1lt, False)
+
+                # ========= 2 L =========
+                GridLayout:
+                    cols: 5
+                    size_hint_y: None
+                    height: 50
+                    spacing: 10
+
+                    Label:
+                        text: "2 L"
+
+                    Label:
+                        id: stock_2lt
+                        text: ""
+                        text_size: self.size
+                        halign: "left"
+                        valign: "middle"
+
+                    TextInput:
+                        id: qty_2lt
+                        hint_text: "Qty"
+                        input_filter: "int"
+                        multiline: False
+
+                    Button:
+                        text: "Add"
+                        on_press: root.modify_stock("2lt", qty_2lt.text, stock_2lt, True)
+
+                    Button:
+                        text: "Remove"
+                        on_press: root.modify_stock("2lt", qty_2lt.text, stock_2lt, False)
+
+                # ========= 20 L =========
+                GridLayout:
+                    cols: 5
+                    size_hint_y: None
+                    height: 50
+                    spacing: 10
+
+                    Label:
+                        text: "20 L"
+
+                    Label:
+                        id: stock_20lt
+                        text: ""
+                        text_size: self.size
+                        halign: "left"
+                        valign: "middle"
+
+                    TextInput:
+                        id: qty_20lt
+                        hint_text: "Qty"
+                        input_filter: "int"
+                        multiline: False
+
+                    Button:
+                        text: "Add"
+                        on_press: root.modify_stock("20lt", qty_20lt.text, stock_20lt, True)
+
+                    Button:
+                        text: "Remove"
+                        on_press: root.modify_stock("20lt", qty_20lt.text, stock_20lt, False)
+
+        Button:
+            text: "Logout"
+            size_hint_y: None
+            height: 45
+            on_press: app.logout()
