@@ -4,15 +4,8 @@ package.name = waterinventory
 package.domain = org.water
 version = 0.1
 
-source.dir = .
-source.include_exts = py,kv
-
 requirements = python3,kivy,requests
-
 orientation = portrait
-
-[buildozer]
-log_level = 2
 
 [app.android]
 android.permissions = INTERNET
@@ -20,3 +13,4 @@ android.api = 33
 android.minapi = 21
 android.ndk = 25b
 android.accept_sdk_license = True
+android.sdk_path = /home/runner/android-sdk
