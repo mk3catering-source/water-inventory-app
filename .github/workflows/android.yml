@@ -25,6 +25,7 @@ jobs:
           build-essential \
           git \
           openjdk-17-jdk \
+          unzip \
           zlib1g-dev \
           libncurses5-dev \
           libffi-dev \
@@ -35,12 +36,31 @@ jobs:
           libreadline-dev \
           libgl1-mesa-dev
 
+    # 🔥 THIS IS THE IMPORTANT PART
+    - name: Install Android SDK & Build Tools
+      run: |
+        export ANDROID_HOME=$HOME/android-sdk
+        mkdir -p $ANDROID_HOME/cmdline-tools
+        cd $ANDROID_HOME/cmdline-tools
+
+        wget https://dl.google.com/android/repository/commandlinetools-linux-11076708_latest.zip -O tools.zip
+        unzip tools.zip
+        mv cmdline-tools latest
+
+        export PATH=$PATH:$ANDROID_HOME/cmdline-tools/latest/bin
+        export PATH=$PATH:$ANDROID_HOME/platform-tools
+
+        yes | sdkmanager --licenses
+        sdkmanager "platform-tools" "platforms;android-33" "build-tools;33.0.2"
+
     - name: Install Buildozer
       run: |
-        pip install buildozer
-        pip install cython
+        pip install --upgrade pip
+        pip install buildozer cython
 
     - name: Build APK
+      env:
+        ANDROID_HOME: /home/runner/android-sdk
       run: |
         buildozer android debug
 
