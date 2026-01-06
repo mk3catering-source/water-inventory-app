@@ -2,6 +2,7 @@
 title = Water Inventory
 package.name = waterinventory
 package.domain = org.water
+version = 0.1
 
 source.dir = .
 source.include_exts = py,kv
