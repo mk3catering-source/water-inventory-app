@@ -70,6 +70,15 @@ jobs:
           "platforms;android-33" \
           "build-tools;33.0.2"
 
+    - name: Fix sdkmanager path for Buildozer
+      run: |
+        mkdir -p /home/runner/android-sdk/tools/bin
+        ln -sf /home/runner/android-sdk/cmdline-tools/latest/bin/sdkmanager \
+              /home/runner/android-sdk/tools/bin/sdkmanager
+    
+
+
+
     # -----------------------------
     # 5. Install Buildozer
     # -----------------------------
