@@ -81,6 +81,11 @@ jobs:
     # -----------------------------
     # 6. Build APK
     # -----------------------------
+    - name: Prepare Android SDK for Buildozer
+      run: |
+        mkdir -p /home/runner/.buildozer/android/platform
+        ln -s /home/runner/android-sdk /home/runner/.buildozer/android/platform/android-sdk
+
     - name: Build Android APK
       env:
         ANDROID_HOME: /home/runner/android-sdk
